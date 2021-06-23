@@ -135,8 +135,23 @@ def parse_job_location(soup):
     return final , is_remote
     
 
+def filter_for_url(text):
+    return text.replace(' ','+').replace(',','')
+    
+
+def get_exact_link(job = None, location = None):
+    if job == None:
+        url = 'https://www.indeed.com/jobs?q=software+engineer&l='
+        
+    else:
+        url = 'https://www.indeed.com/jobs?q=' + filter_for_url(job)+'&l=' + filter_for_url(location)
+    return url
+
 def run():
-    page = get_soup('https://www.indeed.com/jobs?q=%22Software+Engineer%22&l=')
+    job = "Software Engineer Intern"
+    location = "Manhattan, New York"
+    url = get_exact_link(job, location)
+    page = get_soup(url)
     pages = parse_all_pages(page)
     soups = get_all_soups(pages)
     
