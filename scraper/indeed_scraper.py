@@ -164,8 +164,8 @@ def run():
         job.is_full_time = parse_working_time(soup)
         job.job_location, job.is_remote = parse_job_location(soup)
         df = df.append(job.__dict__, ignore_index=True)
-    df = df[['company', 'job_title', 'is_full_time', 'original_link', 'is_remote', 'job_location',]]
+    df = df[['company', 'job_title', 'job_location', 'original_link', 'is_full_time','is_remote']]
     todays_date = f'{datetime.datetime.now():%d-%m-%Y-%H-%M}'
-    csv_filename = str(todays_date) +".csv"
+    csv_filename = "indeed-" + str(todays_date) +".csv"
     df.to_csv(os.path.expanduser(f'~/Downloads/{csv_filename}'))
     
