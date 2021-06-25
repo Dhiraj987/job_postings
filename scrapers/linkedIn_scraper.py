@@ -147,5 +147,5 @@ def run():
         todays_date = f'{datetime.datetime.now():%d-%m-%Y-%H-%M}'
         csv_filename = "linkedIn-" + str(todays_date) +".csv"
         df.to_csv(os.path.expanduser(f'~/Downloads/{csv_filename}'))
-        print('a csv file with ',len(df),' rows, named ', csv_filename ,' is created in your Downloads folder')
+        print('A csv file with ',len(df),' rows, named ', csv_filename ,' is created in your Downloads folder')
     
