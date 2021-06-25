@@ -19,4 +19,4 @@ class job_posting_linkedIn(object):
         self.job_function = None
         self.industries = None
         self.linkedIn_link = None
-        self.posted_data = None
+        self.posted_date = None
