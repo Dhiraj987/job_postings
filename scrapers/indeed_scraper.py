@@ -52,6 +52,7 @@ def parse_all_pages(page):
         #loops with all the links to other pages and stores their soups..
     return pages
 
+
 def get_all_soups(pages):
     soups = []
     #stores the soups to each job postings, the soup from their specific 
@@ -78,11 +79,15 @@ def get_all_soups(pages):
                     link = first.replace('/rc/clk?','https://www.indeed.com/viewjob?')
                     links_to_postings.append(link)
                     #append all the links to the list
+    count = 1
     for link in set(links_to_postings):
         soups.append(get_soup(link))
         #get soups for unique job links parsed from different websites
+        print('parsing: ',count,'/', len(set(links_to_postings)))
+        count += 1
     print(f'we got {len(soups)} job postings')
     return soups
+
 
 def parse_job_title(soup):
     title = 'N/A'
@@ -142,15 +147,14 @@ def filter_for_url(text):
 def get_exact_link(job = None, location = None):
     if job == None:
         url = 'https://www.indeed.com/jobs?q=software+engineer&l='
-        
     else:
         url = 'https://www.indeed.com/jobs?q=' + filter_for_url(job)+'&l=' + filter_for_url(location)
     return url
 
-def run():
-    job = "Software Engineer Intern"
-    location = "Manhattan, New York"
+
+def run(job = "Software Engineer Intern", location = "Manhattan, New York"):
     url = get_exact_link(job, location)
+    print(url)
     page = get_soup(url)
     pages = parse_all_pages(page)
     soups = get_all_soups(pages)
@@ -164,8 +168,14 @@ def run():
         job.is_full_time = parse_working_time(soup)
         job.job_location, job.is_remote = parse_job_location(soup)
         df = df.append(job.__dict__, ignore_index=True)
-    df = df[['company', 'job_title', 'job_location', 'original_link', 'is_full_time','is_remote']]
-    todays_date = f'{datetime.datetime.now():%d-%m-%Y-%H-%M}'
-    csv_filename = "indeed-" + str(todays_date) +".csv"
-    df.to_csv(os.path.expanduser(f'~/Downloads/{csv_filename}'))
+
+    if df.empty:
+        print("Something went wrong")
+    else:
+        df = df[['company', 'job_title', 'job_location', 'original_link', 'is_full_time','is_remote']]
+        todays_date = f'{datetime.datetime.now():%d-%m-%Y-%H-%M}'
+        csv_filename = "indeed-" + str(todays_date) +".csv"
+        df.to_csv(os.path.expanduser(f'~/Downloads/{csv_filename}'))
+        print('A csv file with ',len(df),' rows, named ', csv_filename ,' is created in your Downloads folder')
+    
     
