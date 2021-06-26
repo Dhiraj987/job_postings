@@ -115,10 +115,9 @@ def parse_job_loaction(soup):
     return location
 
 
-def run():
-    job = 'Software Enginner Intern'
-    location = 'New York, NY'
+def run(job = 'Software Enginner Intern', location = 'New York, NY'):
     main_url = get_exact_link(job, location)
+    print('The website being parsed is ', main_url, '\n')
     links = get_links(main_url)
     soups = get_soups(links)
     df = pd.DataFrame()

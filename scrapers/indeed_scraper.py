@@ -154,7 +154,7 @@ def get_exact_link(job = None, location = None):
 
 def run(job = "Software Engineer Intern", location = "Manhattan, New York"):
     url = get_exact_link(job, location)
-    print(url)
+    print("The website being parsed is : ", url, '\n')
     page = get_soup(url)
     pages = parse_all_pages(page)
     soups = get_all_soups(pages)
