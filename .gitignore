@@ -1,1 +1,6 @@
-* .ipynb
+*.ipynb
+__pycache__
+geckodriver
+geckodriver.log
+chromedriver
+.DS_Store
