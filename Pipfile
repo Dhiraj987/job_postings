@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+requests = "*"
+django = "*"
+selenium = "*"
+flask = "*"
+bs4 = "*"
+pandas = "*"
+
+[requires]
+python_version = "3.8.5"
+
+[dev-packages]
+pycodestyle = "*"
