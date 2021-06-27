@@ -1,7 +1,8 @@
 # job_postings
 
-job_scraper is a simple python program that allows us to parse job postings from different websites like
-Indeed, LinkedIn, etc. based on the job position and location.
+job_postings is a simple python program that allows us to parse job postings from different websites like
+Indeed, LinkedIn, etc. based on the job position and location. It returns just the important aspects of
+the job postings in a CSV file, saving time!
 
 
 ### Clone the repo
@@ -28,6 +29,7 @@ git clone https://github.com/Dhiraj987/job_postings
 ```
     from scrapers import for_both  
 ```
+### Usage
 
 Follow along the instruction on the terminal to parse job postings from different websites
 
