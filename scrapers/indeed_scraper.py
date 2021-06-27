@@ -37,18 +37,25 @@ def get_soup(link):
 def parse_all_pages(page):
     #from the first page, it gets the links to all other pages..
     page_links = []
-    blocks = page.find('ul',{'class':'pagination-list'}).find_all('li')
-    for block in blocks:
-        if block.find('a', href = True):
-            incomplete_link = block.find('a')['href']
-            page_links.append('https://www.indeed.com'+incomplete_link)
-            
+    container = page.find('ul',{'class':'pagination-list'})
+    if container is not None:
+        blocks = container.find_all('li')
+        for block in blocks:
+            if block.find('a', href = True):
+                incomplete_link = block.find('a')['href']
+                page_links.append('https://www.indeed.com'+incomplete_link)
+    else:
+        return "we don't have a posting"
     pages = []
     #stores the soup of all the pages
     pages.append(page)
     #appends the soup for the first page before getting into the loop
+    print("parsing page no.: 1")
+    i = 2
     for link in set(page_links):
+        print('parsing page no.:', i)
         pages.append(get_soup(link))
+        i += 1
         #loops with all the links to other pages and stores their soups..
     return pages
 
@@ -83,7 +90,7 @@ def get_all_soups(pages):
     for link in set(links_to_postings):
         soups.append(get_soup(link))
         #get soups for unique job links parsed from different websites
-        print('parsing: ',count,'/', len(set(links_to_postings)))
+        print('parsing job posting: ',count,'/', len(set(links_to_postings)))
         count += 1
     print(f'we got {len(soups)} job postings')
     return soups
@@ -144,7 +151,7 @@ def filter_for_url(text):
     return text.replace(' ','+').replace(',','')
     
 
-def get_exact_link(job = None, location = None):
+def get_exact_link(job, location):
     if job == None:
         url = 'https://www.indeed.com/jobs?q=software+engineer&l='
     else:
@@ -152,13 +159,12 @@ def get_exact_link(job = None, location = None):
     return url
 
 
-def run(job = "Software Engineer Intern", location = "Manhattan, New York"):
+def run(job = None, location=None):
     url = get_exact_link(job, location)
     print("The website being parsed is : ", url, '\n')
     page = get_soup(url)
     pages = parse_all_pages(page)
     soups = get_all_soups(pages)
-    
     df = pd.DataFrame()
     for soup in soups:
         job = job_posting_indeed()
@@ -176,6 +182,6 @@ def run(job = "Software Engineer Intern", location = "Manhattan, New York"):
         todays_date = f'{datetime.datetime.now():%d-%m-%Y-%H-%M}'
         csv_filename = "indeed-" + str(todays_date) +".csv"
         df.to_csv(os.path.expanduser(f'~/Downloads/{csv_filename}'))
-        print('A csv file with ',len(df),' rows, named ', csv_filename ,' is created in your Downloads folder')
+        print('\nA csv file with ',len(df),' rows, named ', csv_filename ,' is created in your Downloads folder')
     
     

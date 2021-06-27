@@ -3,9 +3,9 @@ from scrapers import linkedIn_scraper
 
 def run():
     print('\n')
-    job = input("Enter the job: ")
-    location = input("Enter the location: ")
-    print("\n\tWorking with Indeed scraper")
+    job = input("\tEnter the job: ")
+    location = input("\tEnter the location: ")
+    print("\n\tWorking with Indeed scraper\n")
     indeed_scraper.run(job, location)
     print("\n\tWorking with LinkedIn scraper")
     linkedIn_scraper.run(job, location)

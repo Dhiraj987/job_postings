@@ -9,7 +9,6 @@ FIREFOX_DRIVER = './geckodriver'
 import time
 import pandas as pd
 import os
-import re
 
 def setup_driver(headless=True, driver_type=CHROME_DRIVER) -> webdriver:
     if 'chrome' in driver_type.lower():
@@ -33,7 +32,7 @@ def filter_for_url(text):
     return text.replace(' ','%20').replace(',','%2C')
     
 
-def get_exact_link(job = None, location = None):
+def get_exact_link(job, location):
     base_link = "https://www.linkedin.com/jobs/search?keywords="
     if job == None:
         url = 'https://www.linkedin.com/jobs/search?keywords=software%20Engineer%20Intern&location='
