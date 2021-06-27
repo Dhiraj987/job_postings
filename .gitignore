@@ -4,3 +4,4 @@ geckodriver
 geckodriver.log
 chromedriver
 .DS_Store
+Pipfile.lock
