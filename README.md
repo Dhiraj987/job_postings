@@ -4,24 +4,24 @@ job_scraper is a simple python program that allows us to parse job postings from
 Indeed, LinkedIn, etc. based on the job position and location.
 
 
-### clone the repo
+### Clone the repo
 
 ```bash
 git clone https://github.com/Dhiraj987/job_postings
 ```
 
-### create pipenv
+### Create pipenv
 
 ```
     pipenv install
 ```
 
-### get into virtual env
+### Get into virtual env
 ```
     pipenv shell 
 ```
 
-### start the application
+### Start the application
 ```
     python 
 ```
@@ -29,9 +29,10 @@ git clone https://github.com/Dhiraj987/job_postings
     from scrapers import for_both  
 ```
 
-### Follow along the instruction on the terminal to parse job postings from different websites
+Follow along the instruction on the terminal to parse job postings from different websites
 
-### Once the program runs successfully, a CSV file with all the job postings will be created in the location specified by the program. Good Luck!
+Once the program runs successfully, a CSV file with all the job postings will be created in the location specified in the program. 
+#### Good Luck!
 
 
 
