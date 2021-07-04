@@ -1,5 +1,6 @@
 from scrapers import indeed_scraper
 from scrapers import linkedIn_scraper
+import sys
 
 def run():
     while True:
@@ -20,7 +21,8 @@ def run():
                 print("\n\n\tWorking with Indeed scraper\n")
                 indeed_scraper.run(job, location)
 
-        except:
+
+        except Exception:
             print("\n\nInvalid Entry; Try again")
             continue
 
