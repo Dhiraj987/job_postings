@@ -31,7 +31,7 @@ git clone https://github.com/Dhiraj987/job_postings
 ```
 ### Usage
 
-Follow along the instruction on the terminal to parse job postings from different websites
+Follow along the instructions on the terminal to parse job postings from different websites
 
 Once the program runs successfully, a CSV file with all the job postings will be created in the location specified in the program. 
 #### Good Luck!
