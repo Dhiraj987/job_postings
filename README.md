@@ -8,7 +8,7 @@ the job postings in a CSV file, saving time!
 ### Clone the repo
 
 ```bash
-git clone https://github.com/Dhiraj987/job_postings
+    git clone https://github.com/Dhiraj987/job_postings
 ```
 
 ### Create pipenv
